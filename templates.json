@@ -1,19 +1,50 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {},
+  "parameters": {
+    "storageAccounts_mjrsadorgdstgacc_name": {
+      "defaultValue": "mjrsadorgdstgacc",
+      "type": "string"
+    }
+  },
   "variables": {},
   "resources": [
     {
-      "type": "Microsoft.Resources/resourceGroups",
-      "apiVersion": "2018-05-01",
-      "location": "eastus2",
-      "name": "mjr-SampleAzureDevOpsResourceGroupDeployment-rg",
+      "type": "Microsoft.Storage/storageAccounts",
+      "apiVersion": "2019-04-01",
+      "name": "[parameters('storageAccounts_mjrsadorgdstgacc_name')]",
       "tags": {
         "Tag1": "Value1",
-        "Tag2": "Value2"
+        "Tag2": "Value2",
+        "Tag3": "Value3"
       },
-      "properties": {}
+      "location": "eastus2",
+      "sku": {
+        "name": "Standard_LRS",
+        "tier": "Standard"
+      },
+      "kind": "StorageV2",
+      "properties": {
+        "networkAcls": {
+          "bypass": "AzureServices",
+          "virtualNetworkRules": [],
+          "ipRules": [],
+          "defaultAction": "Allow"
+        },
+        "supportsHttpsTrafficOnly": true,
+        "encryption": {
+          "services": {
+            "file": {
+              "enabled": true
+            },
+            "blob": {
+              "enabled": true
+            }
+          },
+          "keySource": "Microsoft.Storage"
+        },
+        "accessTier": "Hot"
+      }
     }
   ]
 }
