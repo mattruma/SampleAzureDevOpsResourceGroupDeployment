@@ -7,8 +7,8 @@
     {
       "type": "Microsoft.Resources/resourceGroups",
       "apiVersion": "2018-05-01",
-      "location": "mjr-SampleAzureDevOpsResourceGroupDeployment-rg",
-      "name": "eastus2",
+      "location": "eastus2",
+      "name": "mjr-SampleAzureDevOpsResourceGroupDeployment-rg",
       "tags": {
         "Tag1": "Value1",
         "Tag2": "Value2"
